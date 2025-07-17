@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Workshop Information System - Bengkel Putra Prima</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4634/4634598.png" type="image/x-icon">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), #1a2530);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 40px;
+        }
+        
+        .service-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            border: none;
+            padding: 10px 25px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: var(--accent);
+            border: none;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        .admin-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .admin-sidebar {
+            background: var(--dark);
+            color: white;
+            min-height: calc(100vh - 56px);
+            padding-top: 20px;
+        }
+        
+        .admin-content {
+            padding: 20px;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+        
+        .table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .booking-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+        }
+        
+        .service-detail {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .service-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .service-list li:before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .login-container {
+            max-width: 500px;
+            margin: 100px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-category {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+            height: 200px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .modal-img {
+            width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .map-iframe {
+            border: 0;
+        }
+        
+        .map-iframe-full {
+            width: 100%;
+            height: 450px;
+        }
+
+        .page {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.3s ease;
+        }
+        .page.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showPage('home')">
+                <i class="fas fa-car me-2"></i>
+                Bengkel Putra Prima
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Descriptive Action">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home" onclick="showPage('home')">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products" onclick="showPage('products')">Products & Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#booking" onclick="showPage('booking')">Booking Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#news" onclick="showPage('news')">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" onclick="showPage('about')">About Us</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-2">
+                    <input class="form-control me-2" type="search" placeholder="Search">
+                </form>
+                <div>
+                    <button class="btn btn-outline-light me-2" onclick="location.hash = 'login'">Login</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="hero text-center">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Welcome to Bengkel Putra Prima </h1>
+                <p class="lead">The best service for your vehicle with experienced technicians and affordable prices</p>
+                <button class="btn btn-primary btn-lg mt-3" href="#booking" onclick="showPage('booking')">Book Now</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-4">
+                    <div class="service-card card">
+                        <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2018/05/Toyota-PHC-3.jpg" class="card-img-top" alt="Service Besar">
+                        <div class="card-body">
+                            <h5 class="card-title">Major Service</h5>
+                            <p class="card-text">Annual periodic service for your vehicle's comfort, ensuring it is healthy for long journeys and comfortable to drive.</p>
+                            <a href="#service-besar" class="btn btn-primary" onclick="showPage('service-besar')">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card card">
+                        <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/24010547/Servis-Jemput-Bola-Brum-min.jpg" class="card-img-top" alt="Service Ringan">
+                        <div class="card-body">
+                            <h5 class="card-title">Minor Service</h5>
+                            <p class="card-text">Minor service for your vehicle, ensuring it stays healthy and in top condition with timely oil changes.</p>
+                            <a href="#service-ringan" class="btn btn-primary" onclick="showPage('service-ringan')">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card card">
+                        <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/18173503/Fasilitas-Cat-Balikpapan-2.jpg" class="card-img-top" alt="Body Repair">
+                        <div class="card-body">
+                            <h5 class="card-title">Body Repair</h5>
+                            <p class="card-text">Vehicle body repair with perfect results. We use modern technology to restore the original shape of your vehicle.</p>
+                            <a href="#body-repair" class="btn btn-primary" onclick="showPage('body-repair')">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-md-12 text-center">
+                    <h2 class="mb-4">Why Choose Us?</h2>
+                    <div class="row">
+                        <div class="col-md-3 mb-4">
+                            <div class="p-4 bg-white rounded shadow">
+                                <i class="fas fa-tools fa-3x text-primary mb-3"></i>
+                                <h4>Professional Technicians</h4>
+                                <p>Certified technicians with over 10 years of experience</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="p-4 bg-white rounded shadow">
+                                <i class="fas fa-dollar-sign fa-3x text-success mb-3"></i>
+                                <h4>Affordable Prices</h4>
+                                <p>Competitive pricing with guaranteed quality</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="p-4 bg-white rounded shadow">
+                                <i class="fas fa-clock fa-3x text-warning mb-3"></i>
+                                <h4>Fast Service</h4>
+                                <p>Quick service process without compromising quality</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-4">
+                            <div class="p-4 bg-white rounded shadow">
+                                <i class="fas fa-shield-alt fa-3x text-info mb-3"></i>
+                                <h4>Service Guarantee</h4>
+                                <p>6-month warranty for all types of repairs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products & Services Page -->
+    <div id="products" class="page">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h1>Products & Services</h1>
+                <p class="lead">Choose the best service for your vehicle</p>
+            </div>
+            
+            <div class="service-category">
+                <h3><i class="fas fa-list me-2"></i>Service Category</h3>
+                <div class="row mt-3">
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Major Service</h5>
+                                <p class="card-text">Comprehensive service for annual maintenance.</p>
+                                <a href="#service-besar" class="btn btn-sm btn-primary" onclick="showPage('service-besar')">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Minor Service</h5>
+                                <p class="card-text">Routine maintenance to keep your vehicle's performance in check.</p>
+                                <a href="#service-ringan" class="btn btn-sm btn-primary" onclick="showPage('service-ringan')">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Body Repair</h5>
+                                <p class="card-text">Vehicle body repair with perfect results.</p>
+                                <a href="#body-repair" class="btn btn-sm btn-primary" onclick="showPage('body-repair')">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-5">
+                <h3 class="mb-4">Our Featured Services</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2018/05/Toyota-PHC-3.jpg" class="img-fluid rounded-start h-100" alt="Service Besar">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Major Service</h5>
+                                        <p class="card-text">Annual periodic service for your vehicle's comfort, ensuring it is healthy for long journeys and comfortable driving.</p>
+                                        <a href="#service-besar" class="btn btn-primary" onclick="showPage('service-besar')">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/24010547/Servis-Jemput-Bola-Brum-min.jpg" class="img-fluid rounded-start h-100" alt="Service Ringan">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Minor Service</h5>
+                                        <p class="card-text">Minor service for your vehicle, with timely oil changes, your vehicle will always be healthy and in top condition.</p>
+                                        <a href="#service-ringan" class="btn btn-primary" onclick="showPage('service-ringan')">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/18173503/Fasilitas-Cat-Balikpapan-2.jpg" class="img-fluid rounded-start h-100" alt="Body Repair">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Body Repair</h5>
+                                        <p class="card-text">Vehicle body repair with perfect results. We use modern technology to restore your vehicle's original shape.</p>
+                                        <a href="#body-repair" class="btn btn-primary" onclick="showPage('body-repair')">Lihat Detail</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Besar Detail Page -->
+    <div id="service-besar" class="page">
+        <div class="container py-5">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#home" onclick="showPage('home')">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#products" onclick="showPage('products')">Products</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Major Service</li>
+                </ol>
+            </nav>
+            
+            <div class="service-detail">
+                <h1 class="mb-4">Major Service</h1>
+                <p>Some of the components that will usually be checked or replaced if they are in poor condition include:</p>
+                
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2018/05/Toyota-PHC-3.jpg" class="img-fluid rounded mb-4" alt="Major Service" id="mainServiceImage">
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="service-list">
+                            <li>Engine oil, transmission, and gordan replaced with new ones</li>
+                            <li>Oil filter also replaced</li>
+                            <li>Cleaning of the air filter</li>
+                            <li>Inspection of bolts on the vehicle's suspension</li>
+                            <li>Checking spark plugs and ignition cables</li>
+                            <li>Cleaning of the intake manifold</li>
+                            <li>Adjustment of valves on vehicles with manual valves</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <ul class="service-list">
+                        <li>Inspection of the vehicle's brake condition</li>
+                        <li>Clutch inspection</li>
+                        <li>Radiator inspection</li>
+                        <li>Inspection of the vehicle's electrical system</li>
+                        <li>Checking the condition of the fuel system</li>
+                    </ul>
+                </div>
+                
+                <div class="mt-5">
+                    <h4>Major Service Price</h4>
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Vehicle Type</th>
+                                <th>Starting Price</th>
+                                <th>Estimated Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sedan</td>
+                                <td>Rp 1.500.000</td>
+                                <td>3-4 Jam</td>
+                            </tr>
+                            <tr>
+                                <td>Minibus</td>
+                                <td>Rp 1.800.000</td>
+                                <td>4-5 Jam</td>
+                            </tr>
+                            <tr>
+                                <td>SUV</td>
+                                <td>Rp 2.200.000</td>
+                                <td>4-6 Jam</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-4">
+                    <h4>Gallery of Major Services</h4>
+                    <div class="gallery-grid" id="gallery">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://www.carmudi.co.id/journal/wp-content/uploads/2018/05/Toyota-PHC-3.jpg">
+                            <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2018/05/Toyota-PHC-3.jpg" alt="Major Service 1">
+                        </div>
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://img.grouponcdn.com/bynder/4Y7q41YFqrsqrqE3DJN2srpmQ58K/4Y-2048x1229/v1/c349x211.webp">
+                            <img src="https://img.grouponcdn.com/bynder/4Y7q41YFqrsqrqE3DJN2srpmQ58K/4Y-2048x1229/v1/c349x211.webp" alt="Major Service 2">
+                        </div>
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://img.grouponcdn.com/bynder/4PoTmG33xwem5pD9a2EwjPbiMpQp/4P-2048x1229/v1/c349x211.webp">
+                            <img src="https://img.grouponcdn.com/bynder/4PoTmG33xwem5pD9a2EwjPbiMpQp/4P-2048x1229/v1/c349x211.webp" alt="Major Service 3">
+                        </div>
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://img.grouponcdn.com/deal/5UdMjtRgc4qWrkGrfFJdFB1EDJB/5U-5184x3456/v1/c870x524.webp">
+                            <img src="https://img.grouponcdn.com/deal/5UdMjtRgc4qWrkGrfFJdFB1EDJB/5U-5184x3456/v1/c870x524.webp" alt="Major Service 4">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <button class="btn btn-primary btn-lg" onclick="location.hash = 'booking'">Book Service Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Ringan Detail Page -->
+    <div id="service-ringan" class="page">
+        <div class="container py-5">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#home" onclick="showPage('home')">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#products" onclick="showPage('products')">Products</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Minor Service</li>
+                </ol>
+            </nav>
+            
+            <div class="service-detail">
+                <h1 class="mb-4">Minor Service</h1>
+                <p>Minor service for your vehicle, by changing the oil on time the vehicle will always be healthy and prime.</p>
+                
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/24010547/Servis-Jemput-Bola-Brum-min.jpg" class="img-fluid rounded mb-4" alt="Minor Service">
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Manfaat Minor Service</h4>
+                        <ul class="service-list">
+                            <li>Improve vehicle engine performance</li>
+                            <li>Extend vehicle engine life</li>
+                            <li>Prevent more severe component damage</li>
+                            <li>Save on future repair costs</li>
+                            <li>Ensure the vehicle is always in prime condition</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    <h4>Proses Minor Service</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="service-list">
+                                <li>Checking tire pressure and tire condition</li>
+                                <li>Checking brake system</li>
+                                <li>Changing engine oil and oil filter</li>
+                                <li>Checking engine cooling system</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="service-list">
+                                <li>Checking electrical system</li>
+                                <li>Checking fuel system</li>
+                                <li>Checking suspension system</li>
+                                <li>Checking exhaust system</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    <h4>Minor Service Price</h4>
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Service Package</th>
+                                <th>Price</th>
+                                <th>Estimated Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Basic Package</td>
+                                <td>Rp 350.000</td>
+                                <td>1-2 Hours</td>
+                            </tr>
+                            <tr>
+                                <td>Standard Package</td>
+                                <td>Rp 500.000</td>
+                                <td>1.5-2.5 Hours</td>
+                            </tr>
+                            <tr>
+                                <td>Premium Package</td>
+                                <td>Rp 750.000</td>
+                                <td>2-3 Hours</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-4">
+                    <h4>Minor Service Gallery</h4>
+                    <div class="gallery-grid" id="gallery">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/24010547/Servis-Jemput-Bola-Brum-min.jpg">
+                            <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/24010547/Servis-Jemput-Bola-Brum-min.jpg" alt="Minor Service 1">
+                        </div>
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://images.pexels.com/photos/13065694/pexels-photo-13065694.jpeg">
+                            <img src="https://images.pexels.com/photos/13065694/pexels-photo-13065694.jpeg" alt="Minor Service 2">
+                        </div>
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://images.pexels.com/photos/8478223/pexels-photo-8478223.jpeg">
+                            <img src="https://images.pexels.com/photos/8478223/pexels-photo-8478223.jpeg" alt="Minor Service 3">
+                        </div>
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://images.pexels.com/photos/8478250/pexels-photo-8478250.jpeg">
+                            <img src="https://images.pexels.com/photos/8478250/pexels-photo-8478250.jpeg" alt="Minor Service 4">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <button class="btn btn-primary btn-lg" onclick="location.hash = 'booking'">Book Service Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Body Repair Detail Page -->
+    <div id="body-repair" class="page">
+        <div class="container py-5">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#home" onclick="showPage('home')">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#products" onclick="showPage('products')">Products</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Body Repair</li>
+                </ol>
+            </nav>
+            
+            <div class="service-detail">
+                <h1 class="mb-4">Body Repair</h1>
+                <p>Vehicle body repair with perfect results. We use modern technology to restore the original shape of your vehicle.</p>
+                
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/18173503/Fasilitas-Cat-Balikpapan-2.jpg" class="img-fluid rounded mb-4" alt="Body Repair">
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Body Repair Service</h4>
+                        <ul class="service-list">
+                            <li>Body repair due to impact</li>
+                            <li>Body panel replacement</li>
+                            <li>Paint repair and repainting</li>
+                            <li>Car glass repair</li>
+                            <li>Bumper repair</li>
+                            <li>Door and hinge repair</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    <h4>Technology Used</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="service-list">
+                                <li>Spot welding for precise repairs</li>
+                                <li>Paint matching system for perfect paint results</li>
+                                <li>Frame straightening machine for bent frames</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="service-list">
+                                <li>Laser alignment for accurate measurements</li>
+                                <li>Dent removal system without paint</li>
+                                <li>Paintless dent repair for minor damage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    <h4>Body Repair Prices</h4>
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Type of Repair</th>
+                                <th>Starting Price</th>
+                                <th>Completion Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Minor repair (small dents)</td>
+                                <td>Rp 500.000</td>
+                                <td>1-2 Days</td>
+                            </tr>
+                            <tr>
+                                <td>Medium panel repair</td>
+                                <td>Rp 1.500.000</td>
+                                <td>3-4 Days</td>
+                            </tr>
+                            <tr>
+                                <td>Major repair (severe collision)</td>
+                                <td>Rp 3.000.000</td>
+                                <td>5-7 Days</td>
+                            </tr>
+                            <tr>
+                                <td>Full repainting</td>
+                                <td>Rp 5.000.000</td>
+                                <td>7-10 Days</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-4">
+                    <h4>Body Repair Gallery</h4>
+                    <div class="gallery-grid" id="gallery">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/18173503/Fasilitas-Cat-Balikpapan-2.jpg">
+                            <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/18173503/Fasilitas-Cat-Balikpapan-2.jpg" alt="Body Repair 1">
+                        </div>
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://img.freepik.com/free-photo/male-painter-overalls-doing-his-work-car-shop_23-2149750006.jpg">
+                            <img src="https://img.freepik.com/free-photo/male-painter-overalls-doing-his-work-car-shop_23-2149750006.jpg" alt="Body Repair 2">
+                        </div>
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://img.freepik.com/free-photo/male-painter-using-gun-paint-car-shop_23-2149750064.jpg">
+                            <img src="https://img.freepik.com/free-photo/male-painter-using-gun-paint-car-shop_23-2149750064.jpg" alt="Body Repair 3">
+                        </div>
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="	https://img.freepik.com/free-photo/man-hazmat-suit-using-gun-paint-car-shop_23-2149750061.jpg">
+                            <img src="	https://img.freepik.com/free-photo/man-hazmat-suit-using-gun-paint-car-shop_23-2149750061.jpg" alt="Body Repair 4">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <button class="btn btn-primary btn-lg" onclick="location.hash = 'booking'">Book Service Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Page -->
+    <div id="booking" class="page">
+        <div class="container py-5">
+            <h1 class="text-center mb-5">Booking Service</h1>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="booking-form">
+                        <form id="bookingForm">
+                            <div class="mb-3">
+                                <label class="form-label">Vehicle Type</label>
+                                <select class="form-select" required>
+                                    <option selected disabled>Select Vehicle Type</option>
+                                    <option>Sedan</option>
+                                    <option>Minibus</option>
+                                    <option>SUV</option>
+                                    <option>Pickup</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Orderer Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Borrower Category</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="borrowerType" id="personal" value="personal" checked>
+                                        <label class="form-check-label" for="personal">Individual</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="borrowerType" id="company" value="company">
+                                        <label class="form-check-label" for="company">Company/Organization</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Description of Needs</label>
+                                <textarea class="form-control" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Service Date</label>
+                                    <input type="date" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Service Time</label>
+                                    <input type="time" class="form-control" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Request Mechanic</label>
+                                <select class="form-select">
+                                    <option selected>No special request</option>
+                                    <option>Ahmad Dian (Senior Mechanic)</option>
+                                    <option>Budi Santoso (Body Repair Specialist)</option>
+                                    <option>Citra Permata (Electrical Specialist)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Phone/HP</label>
+                                    <input type="tel" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                <button type="reset" class="btn btn-secondary" onclick="window.scrollTo(0, 0)">Reset</button>
+                                <button type="submit" class="btn btn-primary">Submit Booking</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Page -->
+    <div id="news" class="page">
+        <div class="container py-5">
+            <h1 class="text-center mb-5">Latest News</h1>
+
+            <div class="row">
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="https://www.theglobeandmail.com/resizer/sRtEqQEFrDXunttOBxTRTRp3Dfw=/1200x0/filters:quality(80)/arc-anglerfish-tgam-prod-tgam.s3.amazonaws.com/public/72ZQSIS55ZBUBHT2T2JJA2DR3Q" class="card-img-top" alt="News 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Is It Necessary to Change Oil Every 5000 KM?</h5>
+                            <p class="card-text">There are many myths about changing car oil. Find out the real facts about the right oil change frequency.</p>
+                            <a href="https://www.theglobeandmail.com/globe-drive/culture/commuting/does-my-car-really-need-an-oil-change-every-5000-km/article13459002/" target="_blank" rel="noopener" class="btn btn-primary">Read More</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Posted July 29, 2013</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="http://www.blog.sagmart.com/wp-content/uploads/2016/07/Monsoon-Car-Care-Tips.jpg" class="card-img-top" alt="News 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Tips for Caring for Cars in the Rainy Season</h5>
+                            <p class="card-text">The rainy season has arrived, how to take care of your car to keep it in top condition? Check out the complete tips here.</p>
+                            <a href="http://www.blog.sagmart.com/take-care-of-your-car-in-this-rainy-season/" target="_blank" rel="noopener" class="btn btn-primary">Read More</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Posted June 13, 2018</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="https://marvel-b1-cdn.bc0a.com/f00000000270511/s19525.pcdn.co/wp-content/uploads/2020/07/body-tech-1024x512.jpg" class="card-img-top" alt="News 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Latest Technology in Body Repair</h5>
+                            <p class="card-text">Putra Prima workshops are now using Paintless Dent Repair technology for paintless body repairs.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Posted 1 second ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="https://www.bing.com/news/search?q=More+Car&qpvt=more+car+news&FORM=EWRE"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-outline-primary">
+                    See More News
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="page">
+        <div class="container py-5">
+            <h1 class="text-center mb-5">About Us</h1>
+            
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6">
+                    <img src="https://thumbs.dreamstime.com/b/piston-spanners-hand-drawn-auto-emblem-81729614.jpg?w=768" class="img-fluid rounded" alt="Bengkel Putra Prima">
+                </div>
+                <div class="col-md-6">
+                    <h2>Bengkel Putra Prima</h2>
+                    <p>Bengkel Putra Prima was established in 2010 with the aim of providing high quality motor vehicle repair and maintenance services. With a team of experienced mechanics and modern equipment, we are ready to provide the best solution for all your vehicle problems.</p>
+                    <p>We are committed to providing the best service at an affordable price. Every mechanic at Bengkel Putra Prima has undergone specialized training and has a certification of competence in their respective fields.</p>
+                </div>
+            </div>
+            
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <h2 class="text-center mb-4">Vision and Mission</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h4 class="card-title">Vision</h4>
+                                    <p class="card-text">To become the leading workshop in Indonesia that provides solutions for the maintenance and repair of motor vehicles with the highest quality standards and the best customer service.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-3">Mission</h4>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                        Providing quality repair services at competitive prices
+                                        </li>
+                                        <li class="list-group-item">
+                                        Utilizing the latest technology in every repair process
+                                        </li>
+                                        <li class="list-group-item">
+                                        Ensuring customer satisfaction as our top priority
+                                        </li>
+                                        <li class="list-group-item">
+                                        Developing professional and competent human resources
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <iframe class="map-iframe map-iframe-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.317239755109!2d106.79641431476898!3d-6.353035995404783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ef8a9e8d3f0d%3A0x301e8f1fc28b8e0!2sSTT%20Terpadu%20Nurul%20Fikri!5e0!3m2!1sid!2sid!4v1652345678901!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Page -->
+    <div id="login" class="page">
+        <div class="container">
+            <div class="login-container">
+                <h2 class="text-center mb-4">Bengkel Putra Prima Login</h2>
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="#register" onclick="showPage('register')">User Registration</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Registration Page -->
+    <div id="register" class="page">
+        <div class="container">
+            <div class="login-container">
+                <h2 class="text-center mb-4">User Registration</h2>
+                <form id="registerForm">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="#login" onclick="showPage('login')">Already have an account? Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin - Daftar Montir Page -->
+    <div id="mechanic-list" class="page">
+        <div class="admin-header">
+            <div class="container">
+                <h2><i class="fas fa-user-cog me-2"></i>Bengkel Putra Prima Admin</h2>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 admin-sidebar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" href="#mechanic-list"><i class="fas fa-users me-2"></i>Mechanic List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#transaction-list" onclick="showPage('transaction-list')"><i class="fas fa-list-alt me-2"></i>Transaction List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#product-list" onclick="showPage('product-list')"><i class="fas fa-cog me-2"></i>Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#home" onclick="showPage('home')"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-9 admin-content">
+                    <div class="d-flex justify-content-between mb-4">
+                        <h3>Mechanic List</h3>
+                        <button class="btn btn-primary" onclick="location.hash='admin-add-mechanic'"><i class="fas fa-plus me-2"></i>Add Mechanic</button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Mechanic Name</th>
+                                        <th>Type</th>
+                                        <th>Experience</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Ahmad Dian</td>
+                                        <td>Senior Mechanic</td>
+                                        <td>10 years</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewMechanicDetail(1)">Detail</button>
+                                            <button class="btn btn-sm btn-warning" onclick="editMechanic(1)">Edit</button>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteMechanic(1)">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Budi Santoso</td>
+                                        <td>Body Repair Specialist</td>
+                                        <td>8 years</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewMechanicDetail(2)">Detail</button>
+                                            <button class="btn btn-sm btn-warning" onclick="editMechanic(2)">Edit</button>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteMechanic(2)">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Citra Permata</td>
+                                        <td>Electrical Specialist</td>
+                                        <td>6 years</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewMechanicDetail(3)">Detail</button>
+                                            <button class="btn btn-sm btn-warning" onclick="editMechanic(3)">Edit</button>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteMechanic(3)">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Dika Rudi</td>
+                                        <td>General Mechanic</td>
+                                        <td>4 years</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewMechanicDetail(4)">Detail</button>
+                                            <button class="btn btn-sm btn-warning" onclick="editMechanic(4)">Edit</button>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteMechanic(4)">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin - Add Mechanic Page -->
+    <div id="admin-add-mechanic" class="page">
+        <div class="admin-header">
+            <div class="container">
+                <h2><i class="fas fa-user-cog me-2"></i>Bengkel Putra Prima Admin</h2>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 admin-sidebar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#mechanic-list" onclick="showPage('mechanic-list')"><i class="fas fa-users me-2"></i>Mechanic List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#transaction-list" onclick="showPage('transaction-list')"><i class="fas fa-list-alt me-2"></i>Transaction List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#product-list" onclick="showPage('product-list')"><i class="fas fa-cog me-2"></i>Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#home" onclick="showPage('home')"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-9 admin-content">
+                    <h3 class="mb-4">Add New Mechanic</h3>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="mechanicForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Full Name</label>
+                                            <input type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Types of Mechanics</label>
+                                            <select class="form-select" required>
+                                                <option value="">Select Mechanic Type</option>
+                                                <option>Senior Mechanic</option>
+                                                <option>Body Repair Specialist</option>
+                                                <option>Electrical Specialist</option>
+                                                <option>General Mechanic</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Skill Description</label>
+                                    <textarea class="form-control" rows="3" required></textarea>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Place of Birth</label>
+                                            <input type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Date of Birth</label>
+                                            <input type="date" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Profile Photo</label>
+                                    <input type="file" class="form-control" accept="image/*">
+                                </div>
+                                
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary me-2" onclick="location.hash='mechanic-list'">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin - Daftar Transaksi Page -->
+    <div id="transaction-list" class="page">
+        <div class="admin-header">
+            <div class="container">
+                <h2><i class="fas fa-user-cog me-2"></i>Bengkel Putra Prima Admin</h2>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 admin-sidebar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#mechanic-list" onclick="showPage('mechanic-list')"><i class="fas fa-users me-2"></i>Mechanic List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" href="#transaction-list"><i class="fas fa-list-alt me-2"></i>Transaction List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#product-list" onclick="showPage('product-list')"><i class="fas fa-cog me-2"></i>Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#home" onclick="showPage('home')"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-9 admin-content">
+                    <div class="d-flex justify-content-between mb-4">
+                        <h3>Transaction List</h3>
+                        <button class="btn btn-primary" onclick="location.hash='admin-add-transaction'"><i class="fas fa-plus me-2"></i>Add Transaction</button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Date</th>
+                                        <th>Customer</th>
+                                        <th>License Plate</th>
+                                        <th>Category</th>
+                                        <th>Complaint</th>
+                                        <th>Service</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>10 Jan 2022</td>
+                                        <td>Dika Rudi</td>
+                                        <td>B4223SAP</td>
+                                        <td>Minibus</td>
+                                        <td>Regular Oil Change</td>
+                                        <td>Minor Service</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewTransaction(1)">Detail</button>
+                                            <button class="btn btn-sm btn-warning" onclick="editTransaction(1)">Edit</button>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteTransaction(1)">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>15 Jan 2022</td>
+                                        <td>Rina Amelia</td>
+                                        <td>B1234CDE</td>
+                                        <td>Sedan</td>
+                                        <td>Periodic Service</td>
+                                        <td>Major Service</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewTransaction(2)">Detail</button>
+                                            <button class="btn btn-sm btn-warning" onclick="editTransaction(2)">Edit</button>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteTransaction(2)">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>20 Jan 2022</td>
+                                        <td>Andi Pratama</td>
+                                        <td>B5678FGH</td>
+                                        <td>SUV</td>
+                                        <td>Body Repairs</td>
+                                        <td>Body Repair</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewTransaction(3)">Detail</button>
+                                            <button class="btn btn-sm btn-warning" onclick="editTransaction(3)">Edit</button>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteTransaction(3)">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>25 Jan 2022</td>
+                                        <td>Siti Rahayu</td>
+                                        <td>B9876XYZ</td>
+                                        <td>Minibus</td>
+                                        <td>Replace Brake Pads</td>
+                                        <td>Minor Service</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewTransaction(4)">Detail</button>
+                                            <button class="btn btn-sm btn-warning" onclick="editTransaction(4)">Edit</button>
+                                            <button class="btn btn-sm btn-danger" onclick="deleteTransaction(4)">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin - Add Transaction Page -->
+    <div id="admin-add-transaction" class="page">
+        <div class="admin-header">
+            <div class="container">
+                <h2><i class="fas fa-user-cog me-2"></i>Bengkel Putra Prima Admin</h2>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 admin-sidebar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#mechanic-list" onclick="showPage('mechanic-list')"><i class="fas fa-users me-2"></i>Mechanic List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#transaction-list" onclick="showPage('transaction-list')"><i class="fas fa-list-alt me-2"></i>Transaction List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#product-list" onclick="showPage('product-list')"><i class="fas fa-cog me-2"></i>Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#home" onclick="showPage('home')"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-9 admin-content">
+                    <h3 class="mb-4">Add New Transaction</h3>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="transactionForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Transaction Date</label>
+                                            <input type="date" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Customer Name</label>
+                                            <input type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">License plate number</label>
+                                            <input type="text" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Vehicle Type</label>
+                                            <select class="form-select" required>
+                                                <option value="">Select Vehicle Type</option>
+                                                <option>Sedan</option>
+                                                <option>Minibus</option>
+                                                <option>SUV</option>
+                                                <option>Pickup</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Complaint</label>
+                                    <textarea class="form-control" rows="3" required></textarea>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Service Type</label>
+                                    <select class="form-select" required>
+                                        <option value="">Select Service Type</option>
+                                        <option>Service Besar</option>
+                                        <option>Service Ringan</option>
+                                        <option>Body Repair</option>
+                                        <option>Perawatan AC</option>
+                                        <option>Perbaikan Sistem Elektrik</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Mechanic Handling</label>
+                                    <select class="form-select" required>
+                                        <option value="">Select Mechanic</option>
+                                        <option>Ahmad Dian (Senior Mechanic)</option>
+                                        <option>Budi Santoso (Body Repair Specialist)</option>
+                                        <option>Citra Permata (Electric Specialist)</option>
+                                        <option>Dika Rudi (General Mechanic)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Service Fee</label>
+                                    <input type="number" class="form-control" required>
+                                </div>
+                                
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary me-2" onclick="location.hash='transaction-list'">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin - Product Management Page -->
+    <div id="product-list" class="page">
+        <div class="admin-header">
+            <div class="container">
+                <h2><i class="fas fa-user-cog me-2"></i>Bengkel Putra Prima Admin</h2>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 admin-sidebar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#mechanic-list" onclick="showPage('mechanic-list')"><i class="fas fa-users me-2"></i>Mechanic List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#transaction-list" onclick="showPage('transaction-list')"><i class="fas fa-list-alt me-2"></i>Transaction List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white active" href="#product-list" onclick="showPage('product-list')"><i class="fas fa-cog me-2"></i>Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#home" onclick="showPage('home')"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-9 admin-content">
+                    <div class="d-flex justify-content-between mb-4">
+                        <h3>Manage Products & Services</h3>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Product Name</th>
+                                            <th>Category</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>P001</td>
+                                            <td>Major Service</td>
+                                            <td>Service Package</td>
+                                            <td>Rp 1.500.000 - Rp 3.000.000</td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>P002</td>
+                                            <td>Minor Service</td>
+                                            <td>Service Package</td>
+                                            <td>Rp 350.000 - Rp 750.000</td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>P003</td>
+                                            <td>Body Repair Minor</td>
+                                            <td>Body Repair</td>
+                                            <td>Rp 500.000 - Rp 1.500.000</td>
+                                            <td><span class="badge bg-success">Aktif</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>P004</td>
+                                            <td>Body Repair Major</td>
+                                            <td>Body Repair</td>
+                                            <td>Rp 2.000.000 - Rp 5.000.000</td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>P005</td>
+                                            <td>AC Maintenance</td>
+                                            <td>Maintenance</td>
+                                            <td>Rp 300.000</td>
+                                            <td><span class="badge bg-success">Active</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4>Bengkel Putra Prima</h4>
+                    <p>The best service for your vehicle with experienced technicians and affordable prices.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Jl. Raya Bogor KM 30, Depok</p>
+                    <p><i class="fas fa-phone me-2"></i> (021) 1234-5678</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h4>Operating Hours</h4>
+                    <p>Monday - Friday: 08:00 - 17:00</p>
+                    <p>Saturday: 08:00 - 15:00</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>Developed by STT-NF Students @ 2022</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Gallery Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="" class="modal-img" id="modalImage" alt="Gallery Image">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <script>
+        // Page navigation logic
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the requested page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Form submission handlers
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Booking service sent successfully! We will contact you for confirmation.');
+
+            // This will trigger showPageFromHash()
+            location.hash = 'home';
+
+            // Optional: reset form
+            this.reset();
+        });
+        
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login successful! Redirecting to admin page...');
+            location.hash = 'mechanic-list';
+        });
+        
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Registration successful! Please log in with your new account.');
+            location.hash = 'login';
+        });
+        
+        document.getElementById('mechanicForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('The mechanic data was saved successfully!');
+            location.hash = 'mechanic-list';
+        });
+        
+        document.getElementById('transactionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Transaction saved successfully!');
+            location.hash = 'transaction-list';
+        });
+        
+        // Gallery functionality
+        const galleryModal = document.getElementById('galleryModal');
+        const modalImage = document.getElementById('modalImage');
+        
+        galleryModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const imgSrc = button.getAttribute('data-img');
+            modalImage.src = imgSrc;
+        });
+        
+        // Admin functions
+        function viewMechanicDetail(id) {
+            alert(`Displays the details of the mechanic with the ID: ${id}`);
+        }
+        
+        function editMechanic(id) {
+            alert(`Edits the mechanic with the ID: ${id}`);
+        }
+        
+        function deleteMechanic(id) {
+            if(confirm(`Are you sure you want to delete the mechanic with ID: ${id}?`)) {
+                alert(`The mechanic with ID: ${id} has been deleted`);
+            }
+        }
+        
+        function viewTransaction(id) {
+            alert(`Displays the details of the transaction with ID: ${id}`);
+        }
+        
+        function editTransaction(id) {
+            alert(`Edits the transaction with ID: ${id}`);
+        }
+        
+        function deleteTransaction(id) {
+            if(confirm(`Are you sure you want to delete the transaction with ID: ${id}?`)) {
+                alert(`The transaction with ID: ${id} has been deleted`);
+            }
+        }
+
+        function showPageFromHash() {
+            const hash = window.location.hash || "#home";
+            const targetId = hash.replace("#", "");
+
+            document.querySelectorAll(".page").forEach(page => {
+                if (page.id === targetId) {
+                    page.style.display = "block";
+                    setTimeout(() => {
+                        page.classList.add("active");
+                    }, 10);
+                } else {
+                    page.classList.remove("active");
+                    setTimeout(() => {
+                        page.style.display = "none";
+                    }, 300);
+                }
+            });
+
+            window.scrollTo(0, 0);
+        }
+
+        window.addEventListener("DOMContentLoaded", showPageFromHash);
+        window.addEventListener("hashchange", showPageFromHash);
+
+        // Initialize AdminLTE components
+        document.addEventListener('DOMContentLoaded', function() {
+        });
+    </script>
+</body>
+</html>
