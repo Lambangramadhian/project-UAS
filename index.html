@@ -8,221 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4634/4634598.png" type="image/x-icon">
-    <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        
-        .navbar {
-            background: linear-gradient(135deg, var(--primary), #1a2530);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 0;
-            margin-bottom: 40px;
-        }
-        
-        .service-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 25px;
-            height: 100%;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .btn-primary {
-            background-color: var(--secondary);
-            border: none;
-            padding: 10px 25px;
-            font-weight: 600;
-            border-radius: 30px;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--primary);
-            transform: translateY(-2px);
-        }
-        
-        .btn-danger {
-            background-color: var(--accent);
-            border: none;
-        }
-        
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 30px 0;
-            margin-top: 50px;
-        }
-        
-        .admin-header {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .admin-sidebar {
-            background: var(--dark);
-            color: white;
-            min-height: calc(100vh - 56px);
-            padding-top: 20px;
-        }
-        
-        .admin-content {
-            padding: 20px;
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
-        }
-        
-        .table th {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .booking-form {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .page {
-            display: none;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        .nav-tabs .nav-link.active {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-        }
-        
-        .service-detail {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .service-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        
-        .service-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .service-list li:before {
-            content: "✓";
-            color: var(--secondary);
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .login-container {
-            max-width: 500px;
-            margin: 100px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-category {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .gallery-item {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            cursor: pointer;
-            height: 200px;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-        }
-        
-        .modal-img {
-            width: 100%;
-            max-height: 80vh;
-            object-fit: contain;
-        }
-
-        .map-iframe {
-            border: 0;
-        }
-        
-        .map-iframe-full {
-            width: 100%;
-            height: 450px;
-        }
-
-        .page {
-            opacity: 0;
-            transform: scale(0.95);
-            transition: all 0.3s ease;
-        }
-        .page.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -287,7 +73,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="service-card card">
-                        <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/24010547/Servis-Jemput-Bola-Brum-min.jpg" class="card-img-top" alt="Service Ringan">
+                        <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2017/06/servis-mobil-honda-.jpg" class="card-img-top" alt="Service Ringan">
                         <div class="card-body">
                             <h5 class="card-title">Minor Service</h5>
                             <p class="card-text">Minor service for your vehicle, ensuring it stays healthy and in top condition with timely oil changes.</p>
@@ -297,7 +83,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="service-card card">
-                        <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/18173503/Fasilitas-Cat-Balikpapan-2.jpg" class="card-img-top" alt="Body Repair">
+                        <img src="https://momobil.id/_next/image?url=https%3A%2F%2Fmomobil.id%2Fnews%2Fwp-content%2Fuploads%2F2018%2F11%2FBody-Repair-Mobil-Anda-untuk-Menambah-Kepercayaan-Diri.jpg&w=1920&q=75" class="card-img-top" alt="Body Repair">
                         <div class="card-body">
                             <h5 class="card-title">Body Repair</h5>
                             <p class="card-text">Vehicle body repair with perfect results. We use modern technology to restore the original shape of your vehicle.</p>
@@ -409,7 +195,7 @@
                         <div class="card">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/24010547/Servis-Jemput-Bola-Brum-min.jpg" class="img-fluid rounded-start h-100" alt="Service Ringan">
+                                    <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2017/06/servis-mobil-honda-.jpg" class="img-fluid rounded-start h-100" alt="Service Ringan">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -425,7 +211,7 @@
                         <div class="card">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/18173503/Fasilitas-Cat-Balikpapan-2.jpg" class="img-fluid rounded-start h-100" alt="Body Repair">
+                                    <img src="https://momobil.id/_next/image?url=https%3A%2F%2Fmomobil.id%2Fnews%2Fwp-content%2Fuploads%2F2018%2F11%2FBody-Repair-Mobil-Anda-untuk-Menambah-Kepercayaan-Diri.jpg&w=1920&q=75" class="img-fluid rounded-start h-100" alt="Body Repair">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -462,6 +248,7 @@
                         <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2018/05/Toyota-PHC-3.jpg" class="img-fluid rounded mb-4" alt="Major Service" id="mainServiceImage">
                     </div>
                     <div class="col-md-6">
+                        <h4>Benefits of Major Service</h4>
                         <ul class="service-list">
                             <li>Engine oil, transmission, and gordan replaced with new ones</li>
                             <li>Oil filter also replaced</li>
@@ -475,6 +262,7 @@
                 </div>
                 
                 <div class="mt-4">
+                    <h4>Major Service Process</h4>
                     <ul class="service-list">
                         <li>Inspection of the vehicle's brake condition</li>
                         <li>Clutch inspection</li>
@@ -498,17 +286,17 @@
                             <tr>
                                 <td>Sedan</td>
                                 <td>Rp 1.500.000</td>
-                                <td>3-4 Jam</td>
+                                <td>3-4 Hours</td>
                             </tr>
                             <tr>
                                 <td>Minibus</td>
                                 <td>Rp 1.800.000</td>
-                                <td>4-5 Jam</td>
+                                <td>4-5 Hours</td>
                             </tr>
                             <tr>
                                 <td>SUV</td>
                                 <td>Rp 2.200.000</td>
-                                <td>4-6 Jam</td>
+                                <td>4-6 Hours</td>
                             </tr>
                         </tbody>
                     </table>
@@ -556,10 +344,10 @@
                 
                 <div class="row mt-5">
                     <div class="col-md-6">
-                        <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/24010547/Servis-Jemput-Bola-Brum-min.jpg" class="img-fluid rounded mb-4" alt="Minor Service">
+                        <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2017/06/servis-mobil-honda-.jpg" class="img-fluid rounded mb-4" alt="Minor Service">
                     </div>
                     <div class="col-md-6">
-                        <h4>Manfaat Minor Service</h4>
+                        <h4>Benefits of Minor Service</h4>
                         <ul class="service-list">
                             <li>Improve vehicle engine performance</li>
                             <li>Extend vehicle engine life</li>
@@ -571,7 +359,7 @@
                 </div>
                 
                 <div class="mt-5">
-                    <h4>Proses Minor Service</h4>
+                    <h4>Minor Service Process</h4>
                     <div class="row">
                         <div class="col-md-6">
                             <ul class="service-list">
@@ -625,8 +413,8 @@
                 <div class="mt-4">
                     <h4>Minor Service Gallery</h4>
                     <div class="gallery-grid" id="gallery">
-                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/24010547/Servis-Jemput-Bola-Brum-min.jpg">
-                            <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/24010547/Servis-Jemput-Bola-Brum-min.jpg" alt="Minor Service 1">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://www.carmudi.co.id/journal/wp-content/uploads/2017/06/servis-mobil-honda-.jpg">
+                            <img src="https://www.carmudi.co.id/journal/wp-content/uploads/2017/06/servis-mobil-honda-.jpg" alt="Minor Service 1">
                         </div>
                         <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://images.pexels.com/photos/13065694/pexels-photo-13065694.jpeg">
                             <img src="https://images.pexels.com/photos/13065694/pexels-photo-13065694.jpeg" alt="Minor Service 2">
@@ -664,7 +452,7 @@
                 
                 <div class="row mt-5">
                     <div class="col-md-6">
-                        <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/18173503/Fasilitas-Cat-Balikpapan-2.jpg" class="img-fluid rounded mb-4" alt="Body Repair">
+                        <img src="https://momobil.id/_next/image?url=https%3A%2F%2Fmomobil.id%2Fnews%2Fwp-content%2Fuploads%2F2018%2F11%2FBody-Repair-Mobil-Anda-untuk-Menambah-Kepercayaan-Diri.jpg&w=1920&q=75" class="img-fluid rounded mb-4" alt="Body Repair">
                     </div>
                     <div class="col-md-6">
                         <h4>Body Repair Service</h4>
@@ -737,8 +525,8 @@
                 <div class="mt-4">
                     <h4>Body Repair Gallery</h4>
                     <div class="gallery-grid" id="gallery">
-                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/18173503/Fasilitas-Cat-Balikpapan-2.jpg">
-                            <img src="https://carmudi-journal.icarcdn.com/carmudi-id/wp-content/uploads/2019/06/18173503/Fasilitas-Cat-Balikpapan-2.jpg" alt="Body Repair 1">
+                        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://momobil.id/_next/image?url=https%3A%2F%2Fmomobil.id%2Fnews%2Fwp-content%2Fuploads%2F2018%2F11%2FBody-Repair-Mobil-Anda-untuk-Menambah-Kepercayaan-Diri.jpg&w=1920&q=75">
+                            <img src="https://momobil.id/_next/image?url=https%3A%2F%2Fmomobil.id%2Fnews%2Fwp-content%2Fuploads%2F2018%2F11%2FBody-Repair-Mobil-Anda-untuk-Menambah-Kepercayaan-Diri.jpg&w=1920&q=75" alt="Body Repair 1">
                         </div>
                         <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="https://img.freepik.com/free-photo/male-painter-overalls-doing-his-work-car-shop_23-2149750006.jpg">
                             <img src="https://img.freepik.com/free-photo/male-painter-overalls-doing-his-work-car-shop_23-2149750006.jpg" alt="Body Repair 2">
@@ -769,8 +557,8 @@
                     <div class="booking-form">
                         <form id="bookingForm">
                             <div class="mb-3">
-                                <label class="form-label">Vehicle Type</label>
-                                <select class="form-select" required>
+                                <label class="form-label" for="bookingVehicleType">Vehicle Type</label>
+                                <select class="form-select" id="bookingVehicleType" required>
                                     <option selected disabled>Select Vehicle Type</option>
                                     <option>Sedan</option>
                                     <option>Minibus</option>
@@ -781,7 +569,7 @@
                             
                             <div class="mb-3">
                                 <label class="form-label">Orderer Name</label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" class="form-control" required placeholder="Enter orderer name" title="Orderer Name">
                             </div>
                             
                             <div class="mb-3">
@@ -800,24 +588,24 @@
                             
                             <div class="mb-3">
                                 <label class="form-label">Description of Needs</label>
-                                <textarea class="form-control" rows="3" required></textarea>
+                                <textarea class="form-control" rows="3" required title="Description of Needs" placeholder="Describe your needs"></textarea>
                             </div>
                             
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Service Date</label>
-                                    <input type="date" class="form-control" required>
+                                    <input type="date" class="form-control" required title="Service Date" placeholder="Select service date">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Service Time</label>
-                                    <input type="time" class="form-control" required>
+                                    <input type="time" class="form-control" required title="Service Time" placeholder="Select service time">
                                 </div>
                             </div>
                             
                             <div class="mb-3">
                                 <label class="form-label">Request Mechanic</label>
-                                <select class="form-select">
-                                    <option selected>No special request</option>
+                                <select class="form-select" title="Request Mechanic">
+                                    <option selected disabled>No special request</option>
                                     <option>Ahmad Dian (Senior Mechanic)</option>
                                     <option>Budi Santoso (Body Repair Specialist)</option>
                                     <option>Citra Permata (Electrical Specialist)</option>
@@ -827,11 +615,11 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Phone/HP</label>
-                                    <input type="tel" class="form-control" required>
+                                    <input type="tel" class="form-control" required title="Phone Number" placeholder="Enter phone number">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" class="form-control" required>
+                                    <input type="email" class="form-control" required title="Email" placeholder="Enter your email">
                                 </div>
                             </div>
                             
@@ -886,7 +674,7 @@
                         <img src="https://marvel-b1-cdn.bc0a.com/f00000000270511/s19525.pcdn.co/wp-content/uploads/2020/07/body-tech-1024x512.jpg" class="card-img-top" alt="News 3">
                         <div class="card-body">
                             <h5 class="card-title">Latest Technology in Body Repair</h5>
-                            <p class="card-text">Putra Prima workshops are now using Paintless Dent Repair technology for paintless body repairs.</p>
+                            <p class="card-text">Bengkel Putra Prima are now using Paintless Dent Repair technology for paintless body repairs.</p>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Posted 1 second ago</small>
@@ -957,7 +745,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <iframe class="map-iframe map-iframe-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.317239755109!2d106.79641431476898!3d-6.353035995404783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ef8a9e8d3f0d%3A0x301e8f1fc28b8e0!2sSTT%20Terpadu%20Nurul%20Fikri!5e0!3m2!1sid!2sid!4v1652345678901!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe class="map-iframe map-iframe-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.317239755109!2d106.79641431476898!3d-6.353035995404783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ef8a9e8d3f0d%3A0x301e8f1fc28b8e0!2sSTT%20Terpadu%20Nurul%20Fikri!5e0!3m2!1sid!2sid!4v1652345678901!5m2!1sid!2sid" allowfullscreen="" loading="lazy" title="Google Maps Location"></iframe>
                     </div>
                 </div>
             </div>
@@ -972,11 +760,11 @@
                 <form id="loginForm">
                     <div class="mb-3">
                         <label class="form-label">Username</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" required title="Full Name" placeholder="Enter full name">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control" required>
+                        <input type="password" class="form-control" required title="Password" placeholder="Enter your password">
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Sign In</button>
@@ -997,23 +785,23 @@
                 <form id="registerForm">
                     <div class="mb-3">
                         <label class="form-label">Full Name</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" required title="Place of Birth" placeholder="Enter place of birth">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" required>
+                        <input type="email" class="form-control" required title="Email" placeholder="Enter your email">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Username</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" required title="Full Name" placeholder="Enter full name">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control" required>
+                        <input type="password" class="form-control" required title="Password" placeholder="Enter your password">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" required>
+                        <input type="password" class="form-control" required title="Confirm Password" placeholder="Confirm your password">
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Register</button>
@@ -1162,14 +950,14 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Full Name</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required placeholder="Enter full name" title="Full Name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Types of Mechanics</label>
-                                            <select class="form-select" required>
-                                                <option value="">Select Mechanic Type</option>
+                                            <select class="form-select" required title="Types of Mechanics">
+                                                <option value="" selected disabled>Select Mechanic Type</option>
                                                 <option>Senior Mechanic</option>
                                                 <option>Body Repair Specialist</option>
                                                 <option>Electrical Specialist</option>
@@ -1181,32 +969,32 @@
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Skill Description</label>
-                                    <textarea class="form-control" rows="3" required></textarea>
+                                    <textarea class="form-control" rows="3" required placeholder="Enter skill description" title="Skill Description"></textarea>
                                 </div>
                                 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Place of Birth</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required placeholder="Enter place of birth" title="Place of Birth">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Date of Birth</label>
-                                            <input type="date" class="form-control" required>
+                                            <input type="date" class="form-control" required title="Date of Birth" placeholder="Select date of birth">
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" required>
+                                    <input type="tel" class="form-control" required placeholder="Enter phone number" title="Phone Number">
                                 </div>
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Profile Photo</label>
-                                    <input type="file" class="form-control" accept="image/*">
+                                    <input type="file" class="form-control" accept="image/*" title="Profile Photo">
                                 </div>
                                 
                                 <div class="d-flex justify-content-end">
@@ -1372,13 +1160,13 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Transaction Date</label>
-                                            <input type="date" class="form-control" required>
+                                            <input type="date" class="form-control" required title="Transaction Date" placeholder="Select transaction date">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Customer Name</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required title="Customer Name" placeholder="Enter customer name">
                                         </div>
                                     </div>
                                 </div>
@@ -1387,14 +1175,14 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">License plate number</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required title="License Plate Number" placeholder="Enter license plate number">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label">Vehicle Type</label>
-                                            <select class="form-select" required>
-                                                <option value="">Select Vehicle Type</option>
+                                            <select class="form-select" required title="Vehicle Type">
+                                                <option value="" selected disabled>Select Vehicle Type</option>
                                                 <option>Sedan</option>
                                                 <option>Minibus</option>
                                                 <option>SUV</option>
@@ -1406,25 +1194,25 @@
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Complaint</label>
-                                    <textarea class="form-control" rows="3" required></textarea>
+                                    <textarea class="form-control" rows="3" required placeholder="Enter complaint details" title="Complaint Details"></textarea>
                                 </div>
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Service Type</label>
-                                    <select class="form-select" required>
-                                        <option value="">Select Service Type</option>
-                                        <option>Service Besar</option>
-                                        <option>Service Ringan</option>
+                                    <select class="form-select" required title="Service Type">
+                                        <option value="noopener" selected disabled>Select Service Type</option>
+                                        <option>Major Service</option>
+                                        <option>Minor Service</option>
                                         <option>Body Repair</option>
-                                        <option>Perawatan AC</option>
-                                        <option>Perbaikan Sistem Elektrik</option>
+                                        <option>AC Maintenance</option>
+                                        <option>Electrical System Repair</option>
                                     </select>
                                 </div>
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Mechanic Handling</label>
-                                    <select class="form-select" required>
-                                        <option value="">Select Mechanic</option>
+                                    <select class="form-select" required title="Mechanic Handling">
+                                        <option value="" selected disabled>Select Mechanic</option>
                                         <option>Ahmad Dian (Senior Mechanic)</option>
                                         <option>Budi Santoso (Body Repair Specialist)</option>
                                         <option>Citra Permata (Electric Specialist)</option>
@@ -1434,7 +1222,7 @@
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Service Fee</label>
-                                    <input type="number" class="form-control" required>
+                                    <input type="number" class="form-control" required title="Service Fee" placeholder="Enter service fee">
                                 </div>
                                 
                                 <div class="d-flex justify-content-end">
@@ -1514,7 +1302,7 @@
                                             <td>Body Repair Minor</td>
                                             <td>Body Repair</td>
                                             <td>Rp 500.000 - Rp 1.500.000</td>
-                                            <td><span class="badge bg-success">Aktif</span></td>
+                                            <td><span class="badge bg-success">Active</span></td>
                                         </tr>
                                         <tr>
                                             <td>P004</td>
@@ -1550,8 +1338,8 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <h4>Contact Us</h4>
-                    <p><i class="fas fa-map-marker-alt me-2"></i> Jl. Raya Bogor KM 30, Depok</p>
-                    <p><i class="fas fa-phone me-2"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Jl. Soekarno Hatta, Bandung</p>
+                    <p><i class="fas fa-phone me-2"></i>(021) 1234-5678</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <h4>Operating Hours</h4>
@@ -1562,7 +1350,7 @@
             </div>
             <hr>
             <div class="text-center">
-                <p>Developed by STT-NF Students @ 2022</p>
+                <p>Developed by STT-NF Students (Lamb) @ 2022</p>
             </div>
         </div>
     </footer>
@@ -1587,123 +1375,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-    <script>
-        // Page navigation logic
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show the requested page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-        
-        // Form submission handlers
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Booking service sent successfully! We will contact you for confirmation.');
-
-            // This will trigger showPageFromHash()
-            location.hash = 'home';
-
-            // Optional: reset form
-            this.reset();
-        });
-        
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Login successful! Redirecting to admin page...');
-            location.hash = 'mechanic-list';
-        });
-        
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Registration successful! Please log in with your new account.');
-            location.hash = 'login';
-        });
-        
-        document.getElementById('mechanicForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('The mechanic data was saved successfully!');
-            location.hash = 'mechanic-list';
-        });
-        
-        document.getElementById('transactionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Transaction saved successfully!');
-            location.hash = 'transaction-list';
-        });
-        
-        // Gallery functionality
-        const galleryModal = document.getElementById('galleryModal');
-        const modalImage = document.getElementById('modalImage');
-        
-        galleryModal.addEventListener('show.bs.modal', function(event) {
-            const button = event.relatedTarget;
-            const imgSrc = button.getAttribute('data-img');
-            modalImage.src = imgSrc;
-        });
-        
-        // Admin functions
-        function viewMechanicDetail(id) {
-            alert(`Displays the details of the mechanic with the ID: ${id}`);
-        }
-        
-        function editMechanic(id) {
-            alert(`Edits the mechanic with the ID: ${id}`);
-        }
-        
-        function deleteMechanic(id) {
-            if(confirm(`Are you sure you want to delete the mechanic with ID: ${id}?`)) {
-                alert(`The mechanic with ID: ${id} has been deleted`);
-            }
-        }
-        
-        function viewTransaction(id) {
-            alert(`Displays the details of the transaction with ID: ${id}`);
-        }
-        
-        function editTransaction(id) {
-            alert(`Edits the transaction with ID: ${id}`);
-        }
-        
-        function deleteTransaction(id) {
-            if(confirm(`Are you sure you want to delete the transaction with ID: ${id}?`)) {
-                alert(`The transaction with ID: ${id} has been deleted`);
-            }
-        }
-
-        function showPageFromHash() {
-            const hash = window.location.hash || "#home";
-            const targetId = hash.replace("#", "");
-
-            document.querySelectorAll(".page").forEach(page => {
-                if (page.id === targetId) {
-                    page.style.display = "block";
-                    setTimeout(() => {
-                        page.classList.add("active");
-                    }, 10);
-                } else {
-                    page.classList.remove("active");
-                    setTimeout(() => {
-                        page.style.display = "none";
-                    }, 300);
-                }
-            });
-
-            window.scrollTo(0, 0);
-        }
-
-        window.addEventListener("DOMContentLoaded", showPageFromHash);
-        window.addEventListener("hashchange", showPageFromHash);
-
-        // Initialize AdminLTE components
-        document.addEventListener('DOMContentLoaded', function() {
-        });
-    </script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
